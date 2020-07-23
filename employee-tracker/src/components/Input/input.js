@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input() {
+function Input(props) {
     return (
         <div className="input-group my-3 w-25">
             <div className="input-group-prepend">
@@ -11,7 +11,7 @@ function Input() {
                     </svg>
                 </span>
             </div>
-            <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Employee's name" />
+            <input onChange={props.handleInputChange} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Employee's name" />
         </div>
     );
 }
