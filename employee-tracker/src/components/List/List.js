@@ -8,13 +8,15 @@ class EmployeeList extends Component {
         results: []
     }
 
-    searchAPI = query => {
-        API.search(query)
+    searchAPI = () => {
+        API.getUsers()
             .then(res => {
                 console.log(res);
                 this.setState({ results: res.data })
             })
     }
+
+    employee = this.state.results;
 
     render() {
         return (
@@ -32,6 +34,13 @@ class EmployeeList extends Component {
                 
                 <tbody>
                    {/* map through the data to generate new list component for each person */}
+                   {this.employee.map(employee => (
+                       <tr key={employee.id}>
+                          <th scope={"row"}>{employee.id}</th>
+                          <td>{employee.name}</td>
+                          
+                       </tr>
+                   ))}
                 </tbody>
             </table>
         );
