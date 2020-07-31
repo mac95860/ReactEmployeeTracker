@@ -4,7 +4,7 @@ class TableBody extends Component {
     render({id, name, email, cell, city, state}) {
         return (
             <>
-                <tr key={id.value}>
+                <tr key={cell}>
                     <th scope="row" >{id}</th>
                     <td>{name}</td>
                     <td>{email}</td>

@@ -2,7 +2,10 @@ import React, { Component } from "react";
 
 class TableHead extends Component {
 
-    render({children}) {
+    constructor (props) {
+        super(props)
+    }
+    render() {
        
         return (
             <table class="table table-hover">
@@ -17,7 +20,7 @@ class TableHead extends Component {
                     </tr>
                 </thead>
                 
-               {children}
+               {this.props.children}
             </table>
         );
     }
