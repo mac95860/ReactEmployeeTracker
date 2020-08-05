@@ -1,14 +1,14 @@
 import React  from "react";
 import TableBody from '../TableBody/TableBody';
 
-function TableHead({results}) {
+function TableHead({results, sortUsers}) {
    
     return (
         <table className="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">name</th>
+                    <th scope="col" onClick={(e) => sortUsers(e)}>name</th>
                     <th scope="col">email</th>
                     <th scope="col">cell</th>
                     <th scope="col">City</th>
