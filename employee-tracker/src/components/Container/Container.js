@@ -1,59 +1,49 @@
 import React, { Component } from 'react';
 import Input from '../Input/input';
 import TableHead from '../TableHead/TableHead';
-import TableBody from '../TableBody/TableBody';
 import API from "../../utils/API";
 
 
 class Container extends Component {
     state = {
-        results: [],
-        userInput: ""
+        results: null,
+        users: null
+    }
+
+    // sort = addEventListener;
+
+    handleInputChange = e => {
+        const value = e.target.value;
+        const searchUser = this.state.results.filter(user => {
+            let values = Object.values(user)
+            .join("")
+            .toLowerCase();
+            return values.indexOf(value.toLowerCase()) !== -1;
+        })
+        this.setState({
+            users: searchUser
+        })
     }
 
     componentDidMount() {
-        this.getEmployees();
-    }
-
-    getEmployees() {
         API.getUsers()
             .then(({ data }) => {
-                console.log(data.results);
-                this.setState({ results: data.results });
+                this.setState({ 
+                    results: data.results,
+                    users: data.results
+                 });
             })
             .catch(err => console.log(err));
     }
 
-    handleInputChange = e => {
-        const value = e.target.value;
-        //const search = e.target.search;
-        this.setState({
-            userInput: value
-        })
-    }
-
     render() {
 
-        const employees = this.state.results;
+        const results = this.state.users;
         return (
             <div className="container d-flex justify-content-center flex-column">
-                <Input
-                    value={this.state.search}
-                    handleInputChange={this.handleInputChange} />
-                <TableHead>
-                    {
-                        employees.map(employee => (
-                            <TableBody
-                                id={employee.id}
-                                name={employee.name}
-                                email={employee.email}
-                                cell={employee.cell}
-                                city={employee.city}
-                                state={employee.state}
-                            />
-                        ))
-                    }
-                </TableHead>
+                <Input handleInputChange={this.handleInputChange} />
+
+                {results && <TableHead results={results}/> }
             </div>
         )
     }
