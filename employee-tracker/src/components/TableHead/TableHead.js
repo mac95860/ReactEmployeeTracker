@@ -8,7 +8,7 @@ function TableHead({results, sortUsers}) {
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col" onClick={(e) => sortUsers(e)}>name</th>
+                    <th scope="col" onClick={() => sortUsers()}>name</th>
                     <th scope="col">email</th>
                     <th scope="col">cell</th>
                     <th scope="col">City</th>

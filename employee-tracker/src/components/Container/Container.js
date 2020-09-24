@@ -11,10 +11,12 @@ class Container extends Component {
     }
 
     sortUsers = () => {
+        
         const sortByName = this.state.results.sort(
             function sortedNames(a, b) {
-                const firstName = a.name;
-                const secondName = b.name;
+                console.log('hit this function')
+                const firstName = a.name.first;
+                const secondName = b.name.first;
                 if (firstName > secondName) {
                     return 1;
                 } else if (firstName < secondName) {
@@ -24,6 +26,8 @@ class Container extends Component {
                 }
             }
         )
+
+        console.log(sortByName);
         return this.setState({ results: sortByName });
     }
 
